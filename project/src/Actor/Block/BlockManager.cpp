@@ -1,3 +1,15 @@
+/**
+* @file BlockManager.h
+* @brief 足場ブロックの管理をするクラスの定義部分
+* @author yokota0717
+* @date 2018.11.6
+* @param history
+- 2018.11.15 yokota0717
+-# X方向のスクロールに対応
+*/
+
+
+
 #include "BlockManager.h"
 #include "../../define.h"
 #include "../../Scene/GameManager.h"
@@ -6,27 +18,27 @@ BlockManager::BlockManager()
 	:
 	TaskObject("blockManager", "block", TaskObject::State::RUN),
 	BLOCKNUM_X(4),
-	BLOCKNUM_Y(5),
-	nextIsCenter(false)
+	BLOCKNUM_Y(10)
 {
 	blocks_.resize(BLOCKNUM_Y);
 	for (int y = 0; y < BLOCKNUM_Y; ++y) {
 		blocks_[y].resize(BLOCKNUM_X);
 	}
-	for (int y = 0; y < BLOCKNUM_Y; ++y) {
+	//(注意)y方向下が０
+	for (int y = BLOCKNUM_Y - 1; y >= 0; --y) {
 		for (int x = 0; x < BLOCKNUM_X; ++x) {
 			auto block = Block::create();
 			blocks_[y][x] = block;
 			//! 座標指定、yが偶数なら中央あき
 			block->setPos(
 				Math::Vec(-50 + (y % 2 * 100) + (block->getSize().x + 100)*x,
-					100 + (block->getSize().y + 130) * y)
+					SCREEN_HEIGHT - 281 - (block->getSize().y + 130) * y)
 			);
 			block->setType(Block::Type::NOMAL);
-			if (x == 0) {
+			if (y%2 == 0) {
 				block->setType(Block::Type::COIN);
 			}
-			if (x == 3) {
+			if (y%2 == 1) {
 				block->setType(Block::Type::NEEDLE);
 			}
 		}
@@ -56,7 +68,7 @@ void BlockManager::scrollX() {
 			//反対側に同じ情報のブロックを生成
 			auto copy = Block::create();
 			copy->setPos(
-				Math::Vec(game->camera_.getVisibleArea().x + game->camera_.getVisibleArea().w, 
+				Math::Vec(blocks_[y][BLOCKNUM_X - 1]->getPos().x + left->getSize().x * 2,
 					left->getPos().y)
 			);
 			copy->setType(left->getType());
@@ -72,11 +84,11 @@ void BlockManager::scrollX() {
 	for (int y = 0; y < BLOCKNUM_Y; ++y) {
 		auto right = blocks_[y][BLOCKNUM_X - 1];
 		//画面外に完全に出た
-		if (right->getPos().x >= game->camera_.getVisibleArea().x + game->camera_.getVisibleArea().w + 100) {
+		if (right->getPos().x >= game->camera_.getVisibleArea().x + game->camera_.getVisibleArea().w + 50) {
 			//反対側に同じ情報のブロックを生成
 			auto copy = Block::create();
 			copy->setPos(
-				Math::Vec(game->camera_.getVisibleArea().x - right->getSize().x * 1,
+				Math::Vec(blocks_[y][0]->getPos().x - right->getSize().x * 2,
 					right->getPos().y)
 			);
 			copy->setType(right->getType());
@@ -84,29 +96,46 @@ void BlockManager::scrollX() {
 			TaskSystem::getTaskSystem().killTask(right->id());
 			//配列からも削除
 			blocks_[y].pop_back();
-			//最後尾に生成したブロックを追加
+			//先頭に生成したブロックを追加
 			blocks_[y].push_front(copy);
 		}
 	}
 }
 
 void BlockManager::scrollY() {
-	auto topBlock = blocks_[0][0];
-	auto bottomBlock = blocks_[BLOCKNUM_Y][0];
-
-	//上部に追加する
-	if (topBlock->getPos().y <= topBlock->getSize().y) {
-		
-	}
-	//下2列を削除する
-	if (bottomBlock->getPos().y > game->camera_.getVisibleArea().y + bottomBlock->getSize().y * 10/*仮*/) {
-
+	auto bottomBlock = blocks_[0][0];
+	//下端のブロック2列が画面外に出たら
+	if (bottomBlock->getPos().y > game->camera_.getVisibleArea().y + game->camera_.getVisibleArea().h + 130) {
+		//下2列を削除する
+		for (int y = 0; y < 2; ++y) {
+			for (int x = 0; x < BLOCKNUM_X; ++x) {
+				TaskSystem::getTaskSystem().killTask(blocks_[y][0]->id());
+			}
+		}
+		blocks_.pop_front();
+		blocks_.pop_front();
+		//上2列を追加する
+		auto nowTop = blocks_[BLOCKNUM_Y - 3][0];
+ 		for (int y = 0; y < 2; ++y) {
+			std::deque<Block*> line;
+			for (int x = 0; x < BLOCKNUM_X; ++x) {
+				auto block = Block::create();
+				block->setPos(
+					Math::Vec(
+						nowTop->getPos().x + 100 * (1 - y) + 200 * x,
+						nowTop->getPos().y - 160 * (y + 1))
+				);
+				block->setType(Block::Type(y));
+				line.push_back(block);
+			}
+			blocks_.push_back(line);
+		}
 	}
 }
 
 void BlockManager::update() {
 	scrollX();
-	DOUT << blocks_[1][3]->getIsInCamera() << std::endl;
+	scrollY();
 }
 
 void BlockManager::render()

@@ -8,6 +8,8 @@
 -# VecにOffsetを追加
 - 2018.11.12 yokota0717
 -# RectにOffset,OffsetCopyを追加
+- 2018.11.15 yokota0717
+-# Vecのx,yのテンプレート引数をやめた
 */
 
 

@@ -19,9 +19,6 @@ private:
 	const int BLOCKNUM_X;
 	const int BLOCKNUM_Y;
 
-	//! 上に追加するブロックが中央空きかどうか(なんかいい方法ないかな)
-	bool nextIsCenter;
-
 	BlockManager();
 
 	//画面外に出た下2列を削除するクラス
@@ -47,8 +44,6 @@ public:
 
 	//! Y方向スクロール対応
 	void scrollY();
-
-	//! ブロックを
 
 	void update() override;
 	void render() override;
