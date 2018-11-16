@@ -21,11 +21,8 @@ private:
 	std::vector<TaskObject*> tasks_;
 	//! 登録予約がされたタスク一覧
 	std::vector<TaskObject*> addTasks_;
-
-	/**
-	* @brief 登録タスクを描画優先度順にソートする
-	*/
-	void sortByPriority();
+	//! 描画用のタスク一覧
+	std::vector<TaskObject*> tasksForRender_;
 
 	TaskSystem() = default;
 
@@ -79,6 +76,11 @@ public:
 	* @return タスクのポインタのvector
 	*/
 	[[nodiscard]] std::vector<TaskObject*> getTaskGroup(const std::string& group);
+
+	/**
+	* @brief 登録タスクを描画優先度順にソートする
+	*/
+	void sortByPriority();
 
 	/**
 	* @brief 登録タスクを更新する

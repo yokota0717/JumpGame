@@ -20,8 +20,8 @@ Player::Player()
 	isMoving_(false)
 {
 	__super::setPos({ 1,0 });
-	setPriority(0.8f);
 	image_.setHandle("player2.png");
+	setPriority(1.f);
 	col_.setPos(draw_);
 	col_.setSize(Math::Vec{ 50,80 });
 }

@@ -125,6 +125,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Actor\Back.cpp" />
     <ClCompile Include="src\Actor\Block\Block.cpp" />
     <ClCompile Include="src\Actor\Block\BlockManager.cpp" />
     <ClCompile Include="src\Actor\Move\Move.cpp" />
@@ -145,6 +146,7 @@
     <ClCompile Include="src\Utility\Wipe\Wipe.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Actor\Back.hpp" />
     <ClInclude Include="src\Actor\Block\Block.h" />
     <ClInclude Include="src\Actor\Block\BlockManager.h" />
     <ClInclude Include="src\Actor\MoveObjectBase.hpp" />

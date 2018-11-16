@@ -3,7 +3,9 @@
 #include <functional>
 
 void TaskSystem::sortByPriority() {
-	std::sort(tasks_.begin(), tasks_.end());
+	std::sort(tasks_.begin(), tasks_.end(),
+		[](TaskObject* t1, TaskObject* t2) -> bool {return (t1->getPriority() < t2->getPriority()); }
+		);
 }
 
 void TaskSystem::releaseMemory() {
@@ -103,11 +105,15 @@ void TaskSystem::updateTasks() {
 			++id;
 		}
 	}
-	//オブジェクトの登録
-	for (auto id = addTasks_.begin(); id != addTasks_.end(); ++id) {
-		tasks_.emplace_back(*id);
+	if (!addTasks_.empty()) {
+		//オブジェクトの登録
+		for (auto id = addTasks_.begin(); id != addTasks_.end(); ++id) {
+			tasks_.emplace_back(*id);
+		}
+//		tasksForRender_ = tasks_;
+		addTasks_.clear();
 	}
-	addTasks_.clear();
+	//sortByPriority();
 }
 
 void TaskSystem::renderTasks() {

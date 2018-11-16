@@ -3,6 +3,7 @@
 #include "../GameManager.h"
 #include "../../Actor/Player.h"
 #include "../../Actor/Block/BlockManager.h"
+#include "../../Actor/Back.hpp"
 
 
 namespace Scene {
@@ -10,8 +11,9 @@ namespace Scene {
 		:
 		AbstractScene(listener)
 	{
-		auto player = Player::create();
+		Back::create("sky.bmp");
 		BlockManager::create();
+		auto player = Player::create();
 		game->camera_.setTarget(player);
 	}
 

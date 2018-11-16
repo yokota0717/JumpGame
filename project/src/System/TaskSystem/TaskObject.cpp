@@ -74,6 +74,11 @@ Math::Vec & TaskObject::getPos() {
 	return pos_;
 }
 
-bool TaskObject::operator<(const TaskObject& v) {
-	return drawPriority_ < v.drawPriority_;
+//bool TaskObject::operator<(const TaskObject& v) {
+//	return drawPriority_ < v.drawPriority_;
+//}
+
+bool TaskObject::getPriority()
+{
+	return drawPriority_;
 }
