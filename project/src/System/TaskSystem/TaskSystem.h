@@ -8,7 +8,7 @@
 #pragma once
 #include <vector>
 #include "TaskObject.h"
-
+#include <functional>
 
 /**
 * @brief タスク管理クラス
@@ -21,10 +21,10 @@ private:
 	std::vector<TaskObject*> tasks_;
 	//! 登録予約がされたタスク一覧
 	std::vector<TaskObject*> addTasks_;
-	//! 描画用のタスク一覧
-	std::vector<TaskObject*> tasksForRender_;
 
-	TaskSystem() = default;
+	std::function<bool(TaskObject* t1, TaskObject* t2)> isLowerPriority_;
+
+	TaskSystem();
 
 	/**
 	* @brief 保持するポインタを全て解放する

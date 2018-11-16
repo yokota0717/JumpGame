@@ -21,6 +21,7 @@ namespace Scene {
 	Stage1::~Stage1() {
 		TaskSystem::getTaskSystem().killTaskGroup("player");
 		TaskSystem::getTaskSystem().killTaskGroup("block");
+		game->camera_.setPos(Math::Vec{ 0,0 });
 	}
 
 	void Stage1::update() {

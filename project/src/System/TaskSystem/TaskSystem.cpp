@@ -2,9 +2,13 @@
 #include <algorithm>
 #include <functional>
 
+TaskSystem::TaskSystem() {
+	isLowerPriority_ = [](TaskObject* t1, TaskObject* t2)->bool {return(t1->getPriority() < t2->getPriority()); };
+}
+
 void TaskSystem::sortByPriority() {
 	std::sort(tasks_.begin(), tasks_.end(),
-		[](TaskObject* t1, TaskObject* t2) -> bool {return (t1->getPriority() < t2->getPriority()); }
+		[](const TaskObject* t1, const TaskObject* t2) -> bool {return (t1->getPriority() < t2->getPriority()); }
 		);
 }
 
@@ -110,7 +114,6 @@ void TaskSystem::updateTasks() {
 		for (auto id = addTasks_.begin(); id != addTasks_.end(); ++id) {
 			tasks_.emplace_back(*id);
 		}
-//		tasksForRender_ = tasks_;
 		addTasks_.clear();
 	}
 	//sortByPriority();

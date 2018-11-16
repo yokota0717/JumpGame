@@ -121,6 +121,6 @@ public:
 	////! 比較演算子のオーバーロード
 	//bool operator < (const TaskObject& v);
 
-	bool getPriority();
+	bool getPriority() const;
 };
 
