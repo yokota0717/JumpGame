@@ -6,6 +6,7 @@
 * @param history
 - 2018.11.15 yokota0717
 -# X方向のスクロールに対応
+-# Y方向のスクロールに対応
 */
 
 
@@ -35,10 +36,10 @@ BlockManager::BlockManager()
 					SCREEN_HEIGHT - 281 - (block->getSize().y + 130) * y)
 			);
 			block->setType(Block::Type::NOMAL);
-			if (y%2 == 0) {
+			if (x == 0) {
 				block->setType(Block::Type::COIN);
 			}
-			if (y%2 == 1) {
+			if (x == BLOCKNUM_X-1) {
 				block->setType(Block::Type::NEEDLE);
 			}
 		}
@@ -125,7 +126,7 @@ void BlockManager::scrollY() {
 						nowTop->getPos().x + 100 * (1 - y) + 200 * x,
 						nowTop->getPos().y - 160 * (y + 1))
 				);
-				block->setType(Block::Type(y));
+				block->setType(Block::Type(x%3));
 				line.push_back(block);
 			}
 			blocks_.push_back(line);

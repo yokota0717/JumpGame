@@ -9,6 +9,7 @@
 #include "../System/TaskSystem/TaskObject.h"
 #include "../System/Image/Image.h"
 #include "../System/Collision/Collision.h"
+#include "../Utility/easing.hpp"
 
 /**
 * @brief プレイヤクラス
@@ -29,12 +30,22 @@ public:
 private:
 	//! ピクセル単位の現在座標
 	Math::Vec draw_;
+	//! 1つ前の座標
+	Math::Vec preDraw_;
 	//! 向き
 	Angle angle_;
 	//! 画像(仮画像)
 	Image image_;
 	//! 当たり判定(要るか？)
 	Math::Box2DCollider col_;
+	//! X方向座標用イージング
+	Easing easeX_;
+	//! Y方向座標用イージング
+	Easing easeY_;
+	//! 移動中かどうか
+	bool isMoving_;
+	//! カメラ移動用イージング(設計なおしたい)
+	Easing easeCameraY_;
 
 	//! 隠しコンストラクタ
 	Player();
