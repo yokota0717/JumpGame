@@ -25,7 +25,7 @@ private:
 	//std::function<bool(TaskObject* t1, TaskObject* t2)> isLowerPriority_;
 	//bool isLeftPriorityLower(const TaskObject* left, const TaskObject* right);
 
-	bool sortPriority(const TaskObject* left, const TaskObject* right) const;
+	static bool isLowerPriority(const TaskObject* left, const TaskObject* right);
 
 	TaskSystem();
 	/**

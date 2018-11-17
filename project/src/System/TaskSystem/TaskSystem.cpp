@@ -2,14 +2,15 @@
 #include <algorithm>
 #include <functional>
 
-bool isLowerPriority(const TaskObject* left, const TaskObject* right) {
-	return *left < *right;
-}
 
 TaskSystem::TaskSystem(){}
 
+bool TaskSystem::isLowerPriority(const TaskObject * left, const TaskObject * right) {
+	return *left < *right;
+}
+
 void TaskSystem::sortByPriority() {
-	std::sort(tasks_.begin(), tasks_.end(), isLowerPriority);
+	std::sort(tasks_.begin(), tasks_.end(), TaskSystem::isLowerPriority);
 }
 
 void TaskSystem::releaseMemory() {
