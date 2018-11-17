@@ -3,6 +3,7 @@
 #include "../GameManager.h"
 #include "../../Actor/Player.h"
 #include "../../Actor/Block/BlockManager.h"
+#include "../../Actor/Back.hpp"
 
 
 namespace Scene {
@@ -10,30 +11,32 @@ namespace Scene {
 		:
 		AbstractScene(listener)
 	{
-		auto player = Player::create();
 		BlockManager::create();
+		auto player = Player::create();
 		game->camera_.setTarget(player);
+		Back::create("sky.bmp");
 	}
 
 
 	Stage1::~Stage1() {
 		TaskSystem::getTaskSystem().killTaskGroup("player");
 		TaskSystem::getTaskSystem().killTaskGroup("block");
+		game->camera_.setPos(Math::Vec{ 0,0 });
 	}
 
 	void Stage1::update() {
 		//テスト処理　カメラ移動----------------------------------
 		if (game->kb.On(J)) {
-			game->camera_.move(Math::Vec(-0.5f, 0));
+			game->camera_.move(Math::Vec(-2, 0));
 		}
 		if (game->kb.On(L)) {
-			game->camera_.move(Math::Vec(0.5f, 0));
+			game->camera_.move(Math::Vec(2, 0));
 		}
 		if (game->kb.On(I)) {
-			game->camera_.move(Math::Vec(0, -0.5f));
+			game->camera_.move(Math::Vec(0, -2));
 		}
 		if (game->kb.On(K)) {
-			game->camera_.move(Math::Vec(0, 0.5f));
+			game->camera_.move(Math::Vec(0, 2));
 		}
 		//テストここまで-----------------------------------------
 		if (game->kb.Down(ENTER)) {

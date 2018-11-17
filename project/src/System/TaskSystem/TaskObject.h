@@ -1,11 +1,11 @@
-/**
+ï»¿/**
 * @file TaskObject.h
-* @brief ƒ^ƒXƒNŠî’êƒNƒ‰ƒX‚ğ’è‹`‚·‚é
+* @brief ã‚¿ã‚¹ã‚¯åŸºåº•ã‚¯ãƒ©ã‚¹ã‚’å®šç¾©ã™ã‚‹
 * @author yokota0717
 * @date 2018.11.2
 * @param history
 - 2018.11.11 yokota0717
--# À•W‚ğ‚½‚¹‚½
+-# åº§æ¨™ã‚’æŒãŸã›ãŸ
 */
 
 #pragma once
@@ -13,31 +13,31 @@
 #include "../Math/Math.h"
 
 /**
-* @brief ƒ^ƒXƒNŠî’êƒNƒ‰ƒX
+* @brief ã‚¿ã‚¹ã‚¯åŸºåº•ã‚¯ãƒ©ã‚¹
 */
 class TaskObject {
 public:
 	enum class State {
-		NON,		//! –¢’è‹`
-		RUN,		//! ’Êí
-		STOP,		//! ’â~
-		DESTROY,	//! íœ—\–ñ
+		NON,		//! æœªå®šç¾©
+		RUN,		//! é€šå¸¸
+		STOP,		//! åœæ­¢
+		DESTROY,	//! å‰Šé™¤äºˆç´„
 	};
 private:
-	//! ŒÅ—LIDAƒIƒuƒWƒFƒNƒg¶¬–ˆ‚ÉƒCƒ“ƒNƒŠƒƒ“ƒg‚³‚ê‚é
+	//! å›ºæœ‰IDã€ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”Ÿæˆæ¯ã«ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆã•ã‚Œã‚‹
 	static int uid_;
 	//! ID
 	int id_;
-	//! ŒÅ—L‚Ì–¼‘O
+	//! å›ºæœ‰ã®åå‰
 	std::string name_;
-	//! ‘®‚·‚éƒOƒ‹[ƒv–¼
+	//! å±ã™ã‚‹ã‚°ãƒ«ãƒ¼ãƒ—å
 	std::string group_;
-	//! ‹ì“®ó‘Ô
+	//! é§†å‹•çŠ¶æ…‹
 	State state_;
-	//! •`‰æ—Dæ“x
+	//! æç”»å„ªå…ˆåº¦
 	float drawPriority_;
 
-	//! À•W
+	//! åº§æ¨™
 	Math::Vec pos_;
 
 public:
@@ -45,79 +45,82 @@ public:
 	virtual ~TaskObject() = default;
 
 	/**
-	* @brief •`‰æ—Dæ“x‚ğİ’è‚·‚é
-	* - ”’l‚ª‘å‚«‚¢‚Ù‚Çè‘O‚É•`‰æ‚³‚ê‚é
-	* @param priority •`‰æ—Dæ“x
+	* @brief æç”»å„ªå…ˆåº¦ã‚’è¨­å®šã™ã‚‹
+	* - æ•°å€¤ãŒå¤§ãã„ã»ã©æ‰‹å‰ã«æç”»ã•ã‚Œã‚‹
+	* @param priority æç”»å„ªå…ˆåº¦
 	*/
 	void setPriority(const float priority);
 	/**
-	* @brief ‹ì“®ó‘Ô‚ğ•ÏX‚·‚é
-	* @param state w’è‚·‚é‹ì“®ó‘Ô
+	* @brief é§†å‹•çŠ¶æ…‹ã‚’å¤‰æ›´ã™ã‚‹
+	* @param state æŒ‡å®šã™ã‚‹é§†å‹•çŠ¶æ…‹
 	*/
 	void changeState(const State state);
 	/**
-	* @brief –¼‘O‚ğ•ÏX‚·‚é
-	* @param name V‚µ‚¢–¼‘O
-	* @return •ÏX‘O‚Ì–¼‘O
+	* @brief åå‰ã‚’å¤‰æ›´ã™ã‚‹
+	* @param name æ–°ã—ã„åå‰
+	* @return å¤‰æ›´å‰ã®åå‰
 	*/
 	std::string changeName(const std::string& name);
 	/**
-	* @brief ƒOƒ‹[ƒv‚ğ•ÏX‚·‚é
-	* @param name V‚µ‚¢ƒOƒ‹[ƒv–¼
-	* @return •ÏX‘O‚ÌƒOƒ‹[ƒv–¼
+	* @brief ã‚°ãƒ«ãƒ¼ãƒ—ã‚’å¤‰æ›´ã™ã‚‹
+	* @param name æ–°ã—ã„ã‚°ãƒ«ãƒ¼ãƒ—å
+	* @return å¤‰æ›´å‰ã®ã‚°ãƒ«ãƒ¼ãƒ—å
 	*/
 	std::string changeGroup(const std::string& group);
 
 	/**
-	* @brief ƒ^ƒXƒN‚ÉƒƒbƒZ[ƒW‚ğ‘—‚é
-	* @param sender ƒƒbƒZ[ƒW‚ğ‘—‚éƒ^ƒXƒN‚Ìƒ|ƒCƒ“ƒ^
-	* @param receiver ƒƒbƒZ[ƒW‚ğó‚¯æ‚éƒ^ƒXƒN‚Ìƒ|ƒCƒ“ƒ^
-	* @msg ƒƒbƒZ[ƒW
+	* @brief ã‚¿ã‚¹ã‚¯ã«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’é€ã‚‹
+	* @param sender ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’é€ã‚‹ã‚¿ã‚¹ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
+	* @param receiver ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å—ã‘å–ã‚‹ã‚¿ã‚¹ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
+	* @msg ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 	*/
 	void postMsg(TaskObject* sender, TaskObject* receiver, std::string& msg);
 	/**
-	* @brief ƒ^ƒXƒN‚©‚ç‚ÌƒƒbƒZ[ƒWó‚¯æ‚èŠÖ”
-	* @param sender ƒƒbƒZ[ƒW‚ğ‘—‚éƒ^ƒXƒN‚Ìƒ|ƒCƒ“ƒ^
-	* @param msg ƒƒbƒZ[ƒW
+	* @brief ã‚¿ã‚¹ã‚¯ã‹ã‚‰ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å—ã‘å–ã‚Šé–¢æ•°
+	* @param sender ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’é€ã‚‹ã‚¿ã‚¹ã‚¯ã®ãƒã‚¤ãƒ³ã‚¿
+	* @param msg ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 	*/
 	virtual void receiveMsg(TaskObject* sender, std::string& msg);
 
 	/**
-	* @brief À•W‚ğİ’è‚·‚é
-	* @param pos w’è‚·‚éÀ•W
+	* @brief åº§æ¨™ã‚’è¨­å®šã™ã‚‹
+	* @param pos æŒ‡å®šã™ã‚‹åº§æ¨™
 	*/
 	void setPos(Math::Vec pos);
 
 	virtual void init() {};
-	virtual void update() = 0;
-	virtual void render() = 0;
+	virtual void update() {};
+	virtual void updateLate() {};	//! ã©ã†ã—ã¦ã‚‚æ›´æ–°å‡¦ç†ã®é †ç•ªãŒå•é¡Œã«ãªã£ãŸã€‚ããã€‚
+	virtual void render() {};
 
-	//! –¼‘O‚ğæ“¾‚·‚é
-	[[nodiscard]] const std::string& name();
+	//! åå‰ã‚’å–å¾—ã™ã‚‹
+	[[nodiscard]] const std::string& name() const;
 
-	//! ƒOƒ‹[ƒv–¼‚ğæ“¾‚·‚é
-	[[nodiscard]] const std::string& group();
+	//! ã‚°ãƒ«ãƒ¼ãƒ—åã‚’å–å¾—ã™ã‚‹
+	[[nodiscard]] const std::string& group() const;
 
-	//! ‹ì“®ó‘Ô‚ğæ“¾‚·‚é
-	[[nodiscard]] const State& state();
+	//! é§†å‹•çŠ¶æ…‹ã‚’å–å¾—ã™ã‚‹
+	[[nodiscard]] const State& state() const;
 
-	//! ID‚ğæ“¾‚·‚é
-	[[nodiscard]] const int id();
+	//! IDã‚’å–å¾—ã™ã‚‹
+	[[nodiscard]] const int id() const;
 
-	//! ‹ì“®ó‘Ô‚ª’Êí‚È‚çtrue
+	//! æç”»å„ªå…ˆåº¦ã‚’å–å¾—ã™ã‚‹
+	[[nodiscard]] const bool getPriority() const;
+
+	//! é§†å‹•çŠ¶æ…‹ãŒé€šå¸¸ãªã‚‰true
 	[[nodiscard]] const bool isRun();
 
-	//! ‹ì“®ó‘Ô‚ª’â~‚È‚çtrue
+	//! é§†å‹•çŠ¶æ…‹ãŒåœæ­¢ãªã‚‰true
 	[[nodiscard]] const bool isStop();
 
-	//! ‹ì“®ó‘Ô‚ªíœ—\’è‚È‚çtrue
+	//! é§†å‹•çŠ¶æ…‹ãŒå‰Šé™¤äºˆå®šãªã‚‰true
 	[[nodiscard]] const bool isDestroy();
 
-	//! Œ»İÀ•W‚ğæ“¾‚·‚é
+	//! ç¾åœ¨åº§æ¨™ã‚’å–å¾—ã™ã‚‹
 	Math::Vec& getPos();
 
-
-	//! ”äŠr‰‰Zq‚ÌƒI[ƒo[ƒ[ƒh
-	bool operator < (const TaskObject& v);
+	//! æ¯”è¼ƒæ¼”ç®—å­ã®ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰
+	bool operator < (const TaskObject& v) const;
 };
 

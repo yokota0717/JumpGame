@@ -42,19 +42,19 @@ void TaskObject::setPos(Math::Vec pos) {
 	pos_ = pos;
 }
 
-const std::string& TaskObject::name() {
+const std::string& TaskObject::name() const {
 	return name_;
 }
 
-const std::string& TaskObject::group() {
+const std::string& TaskObject::group() const {
 	return group_;
 }
 
-const TaskObject::State & TaskObject::state() {
+const TaskObject::State & TaskObject::state() const {
 	return state_;
 }
 
-const int TaskObject::id() {
+const int TaskObject::id() const {
 	return id_;
 }
 
@@ -74,6 +74,10 @@ Math::Vec & TaskObject::getPos() {
 	return pos_;
 }
 
-bool TaskObject::operator<(const TaskObject& v) {
+bool TaskObject::operator<(const TaskObject& v) const {
 	return drawPriority_ < v.drawPriority_;
+}
+
+const bool TaskObject::getPriority() const {
+	return drawPriority_;
 }

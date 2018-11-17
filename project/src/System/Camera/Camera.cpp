@@ -48,5 +48,5 @@ void Camera2D::chaseTarget() {
 }
 
 void Camera2D::setCenter(Math::Vec & center) {
-	setPos(Math::Vec(center.x - size_.x / 2 - 1, center.y - size_.y / 2 - 1));
+	setPos(Math::Vec(center.x - size_.x / 2, center.y - size_.y / 2));
 }

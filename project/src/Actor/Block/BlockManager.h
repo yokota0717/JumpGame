@@ -19,11 +19,9 @@ private:
 	const int BLOCKNUM_X;
 	const int BLOCKNUM_Y;
 
-	//! 上に追加するブロックが中央空きかどうか(なんかいい方法ないかな)
-	bool nextIsCenter;
-
 	BlockManager();
 
+	//未使用、そのうち実装したい------------------------
 	//画面外に出た下2列を削除するクラス
 	struct BottomLineDeleter final {
 		void deleteLine();
@@ -32,23 +30,20 @@ private:
 	struct TopLineCreator final {
 		void createLine();
 	};
-
 	BottomLineDeleter bottomDeleter_;
 	TopLineCreator topCreator_;
+	//-----------------------------------------------
+
 public:
 	static BlockManager* create();
 	~BlockManager();
 
-	//! ブロックの座標を設定する
+	//! ブロックの座標を設定する(未使用)
 	void setBlockPos(Block* b, int x, int y);
-
 	//! X方向スクロール対応
 	void scrollX();
-
 	//! Y方向スクロール対応
 	void scrollY();
-
-	//! ブロックを
 
 	void update() override;
 	void render() override;

@@ -8,7 +8,7 @@
 #pragma once
 #include <vector>
 #include "TaskObject.h"
-
+#include <functional>
 
 /**
 * @brief タスク管理クラス
@@ -22,13 +22,12 @@ private:
 	//! 登録予約がされたタスク一覧
 	std::vector<TaskObject*> addTasks_;
 
-	/**
-	* @brief 登録タスクを描画優先度順にソートする
-	*/
-	void sortByPriority();
+	//std::function<bool(TaskObject* t1, TaskObject* t2)> isLowerPriority_;
+	//bool isLeftPriorityLower(const TaskObject* left, const TaskObject* right);
 
-	TaskSystem() = default;
+	static bool isLowerPriority(const TaskObject* left, const TaskObject* right);
 
+	TaskSystem();
 	/**
 	* @brief 保持するポインタを全て解放する
 	*/
@@ -79,6 +78,11 @@ public:
 	* @return タスクのポインタのvector
 	*/
 	[[nodiscard]] std::vector<TaskObject*> getTaskGroup(const std::string& group);
+
+	/**
+	* @brief 登録タスクを描画優先度順にソートする
+	*/
+	void sortByPriority();
 
 	/**
 	* @brief 登録タスクを更新する

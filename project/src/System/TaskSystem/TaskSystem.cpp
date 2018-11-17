@@ -2,8 +2,15 @@
 #include <algorithm>
 #include <functional>
 
+
+TaskSystem::TaskSystem(){}
+
+bool TaskSystem::isLowerPriority(const TaskObject * left, const TaskObject * right) {
+	return *left < *right;
+}
+
 void TaskSystem::sortByPriority() {
-	std::sort(tasks_.begin(), tasks_.end());
+	std::sort(tasks_.begin(), tasks_.end(), TaskSystem::isLowerPriority);
 }
 
 void TaskSystem::releaseMemory() {
@@ -103,11 +110,14 @@ void TaskSystem::updateTasks() {
 			++id;
 		}
 	}
-	//オブジェクトの登録
-	for (auto id = addTasks_.begin(); id != addTasks_.end(); ++id) {
-		tasks_.emplace_back(*id);
+	if (!addTasks_.empty()) {
+		//オブジェクトの登録
+		for (auto id = addTasks_.begin(); id != addTasks_.end(); ++id) {
+			tasks_.emplace_back(*id);
+		}
+		addTasks_.clear();
 	}
-	addTasks_.clear();
+	sortByPriority();
 }
 
 void TaskSystem::renderTasks() {

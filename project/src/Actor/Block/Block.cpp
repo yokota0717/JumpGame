@@ -9,6 +9,7 @@ Block::Block()
 	type_(Type::NOMAL),
 	inCamera_(false)
 {
+	setPriority(0.7f);
 }
 
 bool Block::isInCamera() {
