@@ -94,16 +94,19 @@ public:
 	virtual void render() {};
 
 	//! 名前を取得する
-	[[nodiscard]] const std::string& name();
+	[[nodiscard]] const std::string& name() const;
 
 	//! グループ名を取得する
-	[[nodiscard]] const std::string& group();
+	[[nodiscard]] const std::string& group() const;
 
 	//! 駆動状態を取得する
-	[[nodiscard]] const State& state();
+	[[nodiscard]] const State& state() const;
 
 	//! IDを取得する
-	[[nodiscard]] const int id();
+	[[nodiscard]] const int id() const;
+
+	//! 描画優先度を取得する
+	[[nodiscard]] const bool getPriority() const;
 
 	//! 駆動状態が通常ならtrue
 	[[nodiscard]] const bool isRun();
@@ -117,10 +120,7 @@ public:
 	//! 現在座標を取得する
 	Math::Vec& getPos();
 
-
-	////! 比較演算子のオーバーロード
-	//bool operator < (const TaskObject& v);
-
-	bool getPriority() const;
+	//! 比較演算子のオーバーロード
+	bool operator < (const TaskObject& v) const;
 };
 

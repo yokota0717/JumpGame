@@ -139,9 +139,7 @@ void BlockManager::update() {
 	scrollY();
 }
 
-void BlockManager::render()
-{
-}
+void BlockManager::render() {}
 
 void BlockManager::BottomLineDeleter::deleteLine() {
 

@@ -11,10 +11,10 @@ namespace Scene {
 		:
 		AbstractScene(listener)
 	{
-		Back::create("sky.bmp");
 		BlockManager::create();
 		auto player = Player::create();
 		game->camera_.setTarget(player);
+		Back::create("sky.bmp");
 	}
 
 

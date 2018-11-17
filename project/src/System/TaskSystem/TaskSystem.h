@@ -22,10 +22,12 @@ private:
 	//! 登録予約がされたタスク一覧
 	std::vector<TaskObject*> addTasks_;
 
-	std::function<bool(TaskObject* t1, TaskObject* t2)> isLowerPriority_;
+	//std::function<bool(TaskObject* t1, TaskObject* t2)> isLowerPriority_;
+	//bool isLeftPriorityLower(const TaskObject* left, const TaskObject* right);
+
+	bool sortPriority(const TaskObject* left, const TaskObject* right) const;
 
 	TaskSystem();
-
 	/**
 	* @brief 保持するポインタを全て解放する
 	*/
