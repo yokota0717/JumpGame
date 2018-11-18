@@ -130,6 +130,7 @@
     <ClCompile Include="src\Actor\Block\BlockManager.cpp" />
     <ClCompile Include="src\Actor\Move\Move.cpp" />
     <ClCompile Include="src\Actor\Player.cpp" />
+    <ClCompile Include="src\Actor\UI\Score.cpp" />
     <ClCompile Include="src\define.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Scene\GameManager.cpp" />
@@ -152,6 +153,7 @@
     <ClInclude Include="src\Actor\MoveObjectBase.hpp" />
     <ClInclude Include="src\Actor\Move\Move.h" />
     <ClInclude Include="src\Actor\Player.h" />
+    <ClInclude Include="src\Actor\UI\Score.h" />
     <ClInclude Include="src\define.h" />
     <ClInclude Include="src\Scene\GameManager.h" />
     <ClInclude Include="src\Scene\SceneInfo.hpp" />

@@ -27,6 +27,7 @@ public:
 
 	GameManager();
 	~GameManager();
+	void init();
 	void fin();
 
 	//!“ü—ÍŠÖ˜A

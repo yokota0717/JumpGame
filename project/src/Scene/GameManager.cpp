@@ -3,16 +3,18 @@
 
 GameManager::GameManager()
 	:
+	debug_(false),
 	pad(0),
 	camera_({ SCREEN_WIDTH, SCREEN_HEIGHT })
-{
-	debug_ = false;
-	sceneManager_ = new Scene::SceneManager();
-	//ResourceManager::getGraphFac().initLoad();
-}
+{}
 
 GameManager::~GameManager(){
 	delete sceneManager_;
+}
+
+void GameManager::init() {
+	sceneManager_ = new Scene::SceneManager();
+	ResourceManager::getGraphFac().initLoad();
 }
 
 void GameManager::mainLoop() {

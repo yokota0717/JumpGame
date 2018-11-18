@@ -20,7 +20,7 @@ private:
 	
 	Back()
 		:
-		TaskObject("Back", "Back", TaskObject::State::RUN)
+		TaskObject("back", "back", TaskObject::State::RUN)
 	{
 		setPriority(0.1f);
 	};

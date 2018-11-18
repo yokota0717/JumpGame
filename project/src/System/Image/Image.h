@@ -57,6 +57,14 @@ public:
 	*/
 	void draw(const Math::Vec& draw, const int index, const bool isCenter);
 
+	/**
+	* @brief ˆê–‡ŠG‚Ìw’è‚µ‚½”ÍˆÍ‚ğØ‚èo‚µ‚Ä•`‰æ
+	* @param pos •`‰æ‚·‚éÀ•W
+	* @param src Œ³‰æ‘œ‚Ì•`‰æ‚·‚é”ÍˆÍ
+	* @param turnFlag ”½“]‚·‚é‚©‚Ç‚¤‚©
+	*/
+	void drawRect(const Math::Vec& pos, const Math::Box2D& src, const bool turnFlag);
 
-	int getHandle() { return handle_; }
+	//! ƒnƒ“ƒhƒ‹‚ğæ“¾‚·‚é
+	int getHandle();
 };

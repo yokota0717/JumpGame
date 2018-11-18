@@ -39,3 +39,11 @@ void Image::draw(const Math::Vec& draw, const int index, const bool isCenter) {
 		DrawGraphF(draw.x, draw.y, handleDiv_[index], true);
 	}
 }
+
+void Image::drawRect(const Math::Vec& pos, const Math::Box2D& src, const bool turnFlag) {
+	DrawRectGraphF(pos.x, pos.y, src.x, src.y, src.w, src.h, handle_, true, turnFlag);
+}
+
+int Image::getHandle() {
+	return handle_;
+}

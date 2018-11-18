@@ -17,6 +17,11 @@
 void ResourceManager::GraphFactory::initLoad() {
 	//★★★アプリケーション開始時に読み込みたい画像はここでロードする★★★
 	//int handle = LoadGraph("./data/image/player.png");
+	ResourceManager::getGraphFac().getGraph("sky.bmp");
+	//int handle = LoadGraph("./data/image/sky.bmp");
+	//if (handle != -1) {
+	//	singlePool_.insert(std::make_pair("./data/image/sky.bmp", handle));
+	//}
 }
 void ResourceManager::SoundFactory::initLoad() {
 	//★★★アプリケーション開始時に読み込みたいサウンドはここでロードする★★★

@@ -73,10 +73,10 @@ void Player::update() {
 		easeY_.reset();
 		easeCameraY_.reset();
 	}
+	//カメラのY座標 < 0に固定(要検討)
 	if (game->camera_.getPos().y > 0) {
 		game->camera_.setPos(Math::Vec(game->camera_.getPos().x, 0));
 	}
-
 }
 
 void Player::render() {
