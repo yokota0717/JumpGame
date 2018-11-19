@@ -24,15 +24,24 @@ void GameManager::mainLoop() {
 	pad.update();
 	sceneManager_->updateTopScene();
 	TaskSystem::getTaskSystem().updateTasks();
-	if (kb.Down(Q)) { debug_ = !debug_; }
 	sceneManager_->renderTopScene();
 	TaskSystem::getTaskSystem().renderTasks();
+	if (kb.Down(Q)) { debug_ = !debug_; }
+	frame_.add();
 	fps_.wait();
 }
 void GameManager::fin() {}
 
 bool GameManager::debugMode() {
 	return debug_;
+}
+
+int GameManager::getFrame() {
+	return frame_.getCurrentCount();
+}
+
+void GameManager::resetFrameCounter() {
+	frame_.reset();
 }
 
 extern GameManager* game = new GameManager();

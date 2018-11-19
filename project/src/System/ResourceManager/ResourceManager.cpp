@@ -31,7 +31,9 @@ ResourceManager::GraphFactory::GraphFactory()
 
 ResourceManager::GraphFactory::~GraphFactory() {
 	for (auto it : divPool_) {
-		delete it.second.first;
+		if (it.second.first) {
+			delete it.second.first;
+		}
 	}
 	InitGraph();
 }
@@ -78,7 +80,7 @@ int* ResourceManager::GraphFactory::getGraphDiv(const std::string& fileName, con
 ResourceManager::SoundFactory::SoundFactory()
 	:
 	path("./data/sound/")
-{}	
+{}
 
 ResourceManager::SoundFactory::~SoundFactory()
 {
@@ -100,7 +102,7 @@ int ResourceManager::SoundFactory::loadSoundAsync(std::string& fileName) {
 int ResourceManager::SoundFactory::getSound(const std::string& fileName) {
 	std::string file = path + fileName;
 	auto it = pool_.find(file);
-	if(it != pool_.end()){
+	if (it != pool_.end()) {
 		return it->second;
 	}
 	int newSound = loadSound(file);

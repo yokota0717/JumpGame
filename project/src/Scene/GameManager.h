@@ -10,6 +10,7 @@
 #include "../System/TaskSystem/TaskSystem.h"
 #include "../System/FPS/FPS.hpp"
 #include "../System/Camera/Camera.h"
+#include "../Utility/Counter.hpp"
 
 /**
 * @brief ゲーム管理クラス
@@ -21,6 +22,8 @@ class GameManager final {
 	Scene::SceneManager* sceneManager_;
 	//! FPS固定
 	FPS fps_;
+	//! 経過フレームを計測する
+	Counter frame_;
 public:
 	//! カメラ
 	Camera2D camera_;
@@ -45,6 +48,18 @@ public:
 	* @return bool デバッグモード起動中かどうか
 	*/
 	bool debugMode();
+
+	/**
+	* @brief シーンが始まってからの経過フレームを取得する
+	* @return int そのシーンが始まってからの経過フレーム
+	* @note シーン遷移時に初期化される
+	*/
+	int getFrame();
+	/**
+	* @brief 経過フレーム計測カウンターを初期化する
+	* @note シーン遷移時に必ず呼ぶこと
+	*/
+	void resetFrameCounter();
 };
 
 //! ゲーム管理オブジェクト

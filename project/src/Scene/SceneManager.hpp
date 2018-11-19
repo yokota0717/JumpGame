@@ -12,6 +12,7 @@
 #include "Scene/Title.h"
 #include "Scene/Stage1.h"
 #include "../Utility/Error.hpp"
+#include "../Utility/Utility.hpp"
 
 namespace Scene {
 	/**
@@ -34,26 +35,32 @@ namespace Scene {
 		void onSceneChanged(const SceneName& scene, [[maybe_unused]]const Parameter* param, const StackPopFlag stackPopFlag) override {
 			switch (stackPopFlag) {
 			case StackPopFlag::NON:
+				DOUT << "pre-scene is remainning"<<std::endl;
 				break;
 			case StackPopFlag::POP:
+				DOUT << "poped scene-stack" << std::endl;
 				deleteScene();
 				break;
 			case StackPopFlag::ALL_CLEAR:
+				DOUT << "poped scene-stack all" << std::endl;
 				stackClear();
 			}
 			switch (scene) {
 			case Scene::SceneName::TITLE:
+				DOUT << "Title created" << std::endl;
 				sceneStack_.push(new Title(this, *param));
 				break;
 			case Scene::SceneName::GAME:
+				DOUT << "Game created" << std::endl;
 				sceneStack_.push(new Stage1(this, *param));
 				break;
 			case Scene::SceneName::BACK_SCENE:
+				DOUT << "back pre scene" << std::endl;
 				break;
 			case Scene::SceneName::NON:
-				std::cout << "シーンなし" << std::endl;
+				std::cout << "no scene" << std::endl;
 			default:
-				ERR("存在しないシーンが呼ばれました");
+				ERR("non-defined scene is called");
 				break;
 			}
 		}
