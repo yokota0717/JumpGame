@@ -65,6 +65,6 @@ public:
 	*/
 	void drawRect(const Math::Vec& pos, const Math::Box2D& src, const bool turnFlag);
 
-	//! ハンドルを取得する
+	//! ハンドルを取得する(要らないかも)
 	int getHandle();
 };

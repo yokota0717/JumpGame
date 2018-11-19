@@ -16,12 +16,7 @@
 
 void ResourceManager::GraphFactory::initLoad() {
 	//★★★アプリケーション開始時に読み込みたい画像はここでロードする★★★
-	//int handle = LoadGraph("./data/image/player.png");
 	ResourceManager::getGraphFac().getGraph("sky.bmp");
-	//int handle = LoadGraph("./data/image/sky.bmp");
-	//if (handle != -1) {
-	//	singlePool_.insert(std::make_pair("./data/image/sky.bmp", handle));
-	//}
 }
 void ResourceManager::SoundFactory::initLoad() {
 	//★★★アプリケーション開始時に読み込みたいサウンドはここでロードする★★★
@@ -35,14 +30,9 @@ ResourceManager::GraphFactory::GraphFactory()
 {}
 
 ResourceManager::GraphFactory::~GraphFactory() {
-	//for (auto it = divPool_.begin(); it != divPool_.end(); ++it) {
-	//	if (it->second) {
-	//		//delete it->second;
-	//		free(it->second);
-	//	}
-	//	it->second = nullptr;
-	//}
-	divPool_.clear();
+	for (auto it : divPool_) {
+		delete it.second.first;
+	}
 	InitGraph();
 }
 
@@ -52,23 +42,14 @@ int ResourceManager::GraphFactory::createGraph(const std::string& fileName) {
 }
 
 int* ResourceManager::GraphFactory::createGraphDiv(const std::string& fileName, const int allNum, const int xNum, const int yNum, const int xSize, const int ySize) {
-	//int* handle = (int*)malloc(sizeof(int)*allNum);
-	//if (handle == nullptr) { return nullptr; }
-	
-	
-	/**
-	* @note DivGraphの解放処理に困っている
-	*/
-
-	std::vector<int> handle;
+	int* handle = new int[allNum];
 	LoadDivGraph(fileName.c_str(), allNum, xNum, yNum, xSize, ySize, handle);
 	return handle;
-	//free(handle);
 }
 
 int ResourceManager::GraphFactory::getGraph(const std::string& fileName) {
 	std::string file = path + fileName;
-	auto it = singlePool_.find(file);
+	auto it = singlePool_.find(fileName);
 	if (it != singlePool_.end()) {
 		return it->second;
 	}
@@ -81,13 +62,13 @@ int ResourceManager::GraphFactory::getGraph(const std::string& fileName) {
 
 int* ResourceManager::GraphFactory::getGraphDiv(const std::string& fileName, const int allNum, const int xNum, const int yNum, const int xSize, const int ySize) {
 	std::string file = path + fileName;
-	auto it = divPool_.find(file);
+	auto it = divPool_.find(fileName);
 	if (it != divPool_.end()) {
-		return it->second;
+		return it->second.first;
 	}
 	int* newGraph = createGraphDiv(file.c_str(), allNum, xNum, yNum, xSize, ySize);
 	if (*newGraph != -1) {
-		divPool_.insert(std::make_pair(fileName, newGraph));
+		divPool_.insert(std::make_pair(fileName, std::make_pair(newGraph, (size_t)allNum)));
 	}
 	return newGraph;
 }

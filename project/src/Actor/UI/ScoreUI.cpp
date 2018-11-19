@@ -1,4 +1,5 @@
 #include "ScoreUI.h"
+#include "../../System/ResourceManager/ResourceManager.h"
 
 ScoreUI::ScoreUI()
 	:

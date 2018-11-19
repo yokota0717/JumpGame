@@ -8,7 +8,6 @@ Image::Image()
 
 Image::~Image()
 {
-	//delete handleDiv_;
 }
 
 void Image::setHandle(const std::string& path) {

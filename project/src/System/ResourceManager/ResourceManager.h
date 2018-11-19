@@ -35,7 +35,7 @@ public:
 		//! ハンドルを保管しておくコンテナ、単一で使用する画像用
 		std::unordered_map<std::string, int> singlePool_;
 		//! ハンドルを保管しておくコンテナ、分割する画像用
-		std::unordered_map<std::string, int*> divPool_;
+		std::unordered_map<std::string, std::pair<int*, size_t>> divPool_;
 
 		/**
 		* @brief パスから新たに画像を読み込む
