@@ -7,7 +7,9 @@ Image::Image()
 }
 
 Image::~Image()
-{}
+{
+	//delete handleDiv_;
+}
 
 void Image::setHandle(const std::string& path) {
 	handle_ = ResourceManager::getGraphFac().getGraph(path);

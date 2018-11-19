@@ -18,8 +18,14 @@ Score::~Score() {}
 
 void Score::addScore(const int add) {
 	score_ += add;
+	auto scoreUI = TaskSystem::getTaskSystem().getTask("scoreUI", "UI");
+	postMsg(this, scoreUI, score_);
 }
 
 int Score::getScore() const {
 	return score_;
+}
+
+void Score::receiveMsg(TaskObject* sender, const std::any msg) {
+	addScore(std::any_cast<int>(msg));
 }

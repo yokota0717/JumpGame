@@ -30,13 +30,13 @@ std::string TaskObject::changeGroup(const std::string& group) {
 	return old;
 }
 
-void TaskObject::postMsg(TaskObject* sender, TaskObject* receiver, std::string& msg) {
+void TaskObject::postMsg(TaskObject* sender, TaskObject* receiver, const std::any msg) {
 	if (receiver) {
 		receiver->receiveMsg(sender, msg);
 	}
 }
 
-void TaskObject::receiveMsg(TaskObject* sender, std::string& msg) {}
+void TaskObject::receiveMsg(TaskObject* sender, const std::any msg) {}
 
 void TaskObject::setPos(Math::Vec pos) {
 	pos_ = pos;

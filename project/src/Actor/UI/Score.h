@@ -22,4 +22,5 @@ public:
 	void addScore(const int add);
 	//! ƒXƒRƒA‚ğæ“¾‚·‚é
 	int getScore() const;
+	void receiveMsg(TaskObject * sender, const std::any msg);
 };

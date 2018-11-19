@@ -35,12 +35,13 @@ ResourceManager::GraphFactory::GraphFactory()
 {}
 
 ResourceManager::GraphFactory::~GraphFactory() {
-	for (auto it = divPool_.begin(); it != divPool_.end(); ++it) {
-		if (it->second) {
-			delete it->second;
-		}
-		it->second = nullptr;
-	}
+	//for (auto it = divPool_.begin(); it != divPool_.end(); ++it) {
+	//	if (it->second) {
+	//		//delete it->second;
+	//		free(it->second);
+	//	}
+	//	it->second = nullptr;
+	//}
 	divPool_.clear();
 	InitGraph();
 }
@@ -51,9 +52,18 @@ int ResourceManager::GraphFactory::createGraph(const std::string& fileName) {
 }
 
 int* ResourceManager::GraphFactory::createGraphDiv(const std::string& fileName, const int allNum, const int xNum, const int yNum, const int xSize, const int ySize) {
-	int* handle = new int[allNum];
+	//int* handle = (int*)malloc(sizeof(int)*allNum);
+	//if (handle == nullptr) { return nullptr; }
+	
+	
+	/**
+	* @note DivGraph‚Ì‰ğ•úˆ—‚É¢‚Á‚Ä‚¢‚é
+	*/
+
+	std::vector<int> handle;
 	LoadDivGraph(fileName.c_str(), allNum, xNum, yNum, xSize, ySize, handle);
 	return handle;
+	//free(handle);
 }
 
 int ResourceManager::GraphFactory::getGraph(const std::string& fileName) {

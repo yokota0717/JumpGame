@@ -11,6 +11,7 @@
 #include "Player.h"
 #include "../Scene/GameManager.h"
 #include "../define.h"
+#include "UI/Score.h"
 
 Player::Player()
 	:
@@ -28,6 +29,11 @@ Player::Player()
 
 void Player::jump(Angle angle) {
 	//ここにジャンプ処理
+}
+
+void Player::calcScore() {
+	auto score = TaskSystem::getTaskSystem().getTask("score", "score");
+	postMsg(this, score, 1);
 }
 
 Player* Player::create() {
@@ -72,6 +78,8 @@ void Player::update() {
 		easeX_.reset();
 		easeY_.reset();
 		easeCameraY_.reset();
+		//スコア加算
+		calcScore();
 	}
 	//カメラのY座標 < 0に固定(要検討)
 	if (game->camera_.getPos().y > 0) {
