@@ -64,7 +64,7 @@ void Player::update() {
 		easeY_.run(Easing::BackOut, 10);
 		easeCameraY_.run(Easing::CubicOut, 10);
 		//座標更新
-		draw_.x = easeX_.getVolume(preDraw_.x, -100 + 200 * (int)angle_);
+		draw_.x = easeX_.getVolume(preDraw_.x, -100 + 200 * (float)angle_);
 		draw_.y = easeY_.getVolume(preDraw_.y, -160);
 		//カメラ座標更新
 		Math::Vec cameraCenter{ draw_.x, game->camera_.getPos().y };

@@ -1,8 +1,11 @@
-/**
+ï»¿/**
 * @file ScoreUI.h
-* @brief ƒXƒRƒA‚ğ•\¦‚·‚éUIƒNƒ‰ƒX‚ğ’è‹`‚·‚é
+* @brief ã‚¹ã‚³ã‚¢ã‚’è¡¨ç¤ºã™ã‚‹UIã‚¯ãƒ©ã‚¹ã‚’å®šç¾©ã™ã‚‹
 * @author yokota0717
 * @date 2018.11.19
+* @param history
+- 2018.11.20 yokota0717
+-# SCOREã®æ–‡å­—ã‚’è¿½åŠ 
 */
 
 #pragma once
@@ -12,7 +15,9 @@
 
 class ScoreUI final : public TaskObject {
 private:
-	Image image_;
+	Image* number_;
+	Image* font_;
+	Math::Vec scale_;
 	int score_;
 	
 	ScoreUI();

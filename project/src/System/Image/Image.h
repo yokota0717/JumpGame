@@ -1,8 +1,12 @@
-/**
+ï»¿/**
 * @file Image.h
-* @brief ‰æ‘œ•`‰æ‚ÉŠÖ‚·‚éƒNƒ‰ƒX‚ğ’è‹`‚·‚é
+* @brief ç”»åƒæç”»ã«é–¢ã™ã‚‹ã‚¯ãƒ©ã‚¹ã‚’å®šç¾©ã™ã‚‹
 * @author yokota0717
 * @date 2018.10.27
+* @param history
+- 2018.11.20 yokota0717
+-# å›è»¢ãŠã‚ˆã³æ‹¡å¤§ç¸®å°ã¤ãæç”»é–¢æ•°ã‚’è¿½åŠ 
+-# ç”»åƒã‚µã‚¤ã‚ºã®å–å¾—é–¢æ•°ã‚’è¿½åŠ 
 */
 
 #pragma once
@@ -14,57 +18,82 @@
 
 class Image
 {
-	//! ‰æ‘œƒnƒ“ƒhƒ‹
+	//! ç”»åƒãƒãƒ³ãƒ‰ãƒ«
 	int handle_;
 	int* handleDiv_;
 public:
 	/**
-	* @brief ‰æ‘œƒnƒ“ƒhƒ‹‚ğİ’è‚·‚é
+	* @brief ç”»åƒãƒãƒ³ãƒ‰ãƒ«ã‚’è¨­å®šã™ã‚‹
 	*/
 	Image();
 	~Image();
 
 	/**
-	* @brief ‰æ‘œƒnƒ“ƒhƒ‹‚ğİ’è‚·‚é
-	* - ’Pˆê‚Åg‚¤‰æ‘œ‚Ì“Ç‚İ‚İ‚Ég‚¤
-	* @param path ‰æ‘œ‚ÌƒpƒX
+	* @brief ç”»åƒãƒãƒ³ãƒ‰ãƒ«ã‚’è¨­å®šã™ã‚‹
+	* - å˜ä¸€ã§ä½¿ã†ç”»åƒã®èª­ã¿è¾¼ã¿ã«ä½¿ã†
+	* @param path ç”»åƒã®ãƒ‘ã‚¹
 	*/
 	void setHandle(const std::string& path);
 
 	/**
 	* @brief
-	* - •ªŠ„‚µ‚Äg‚¤‰æ‘œ‚Ì“Ç‚İ‚İ‚Ég‚¤
-	* @param path ‰æ‘œ‚ÌƒpƒX
+	* - åˆ†å‰²ã—ã¦ä½¿ã†ç”»åƒã®èª­ã¿è¾¼ã¿ã«ä½¿ã†
+	* @param path ç”»åƒã®ãƒ‘ã‚¹
 	*/
 	void setHandleDiv(const std::string& path, const int allNum, const int xNun, const int yNun, const int xSize, const int ySize);
 
 	/**
-	* @brief ’Pˆê‚Å“Ç‚İ‚ñ‚¾‰æ‘œ‚Ì•`‰æŠÖ”AƒAƒjƒ[ƒVƒ‡ƒ“‚Í‚µ‚È‚¢
-	* @param draw •`‰æ‚·‚éÀ•W
-	* @param center ƒsƒ{ƒbƒg‚ğ‰æ‘œ‚Ì’†S‚É‚·‚é
-	* - true‚È‚çƒsƒ{ƒbƒg‚ª’†‰›
-	* - false‚È‚çƒsƒ{ƒbƒg‚ª¶ã
+	* @brief å˜ä¸€ã§èª­ã¿è¾¼ã‚“ã ç”»åƒã®æç”»é–¢æ•°ã€ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã¯ã—ãªã„
+	* @param draw æç”»ã™ã‚‹åº§æ¨™
+	* @param center ãƒ”ãƒœãƒƒãƒˆã‚’ç”»åƒã®ä¸­å¿ƒã«ã™ã‚‹
+	* - trueãªã‚‰ãƒ”ãƒœãƒƒãƒˆãŒä¸­å¤®
+	* - falseãªã‚‰ãƒ”ãƒœãƒƒãƒˆãŒå·¦ä¸Š
 	*/
-	void draw(const Math::Vec& draw, const bool isCenter);
+	void draw(const Math::Vec& pos, const bool isCenter);
 
 	/**
-	* @brief •ªŠ„‚µ‚Ä“Ç‚İ‚ñ‚¾‰æ‘œ‚Ì•`‰æŠÖ”AƒAƒjƒ[ƒVƒ‡ƒ“‚Í‚µ‚È‚¢
-	* @param draw •`‰æ‚·‚éÀ•W
-	* @param index •`‰æ‚·‚é‰æ‘œ‚ÌƒCƒ“ƒfƒbƒNƒX
-	* @param center ƒsƒ{ƒbƒg‚ğ‰æ‘œ‚Ì’†S‚É‚·‚é
-	* - true‚È‚çƒsƒ{ƒbƒg‚ª’†‰›
-	* - false‚È‚çƒsƒ{ƒbƒg‚ª¶ã
+	* @brief åˆ†å‰²ã—ã¦èª­ã¿è¾¼ã‚“ã ç”»åƒã®æç”»é–¢æ•°ã€ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã¯ã—ãªã„
+	* @param draw æç”»ã™ã‚‹åº§æ¨™
+	* @param index æç”»ã™ã‚‹ç”»åƒã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	* @param center ãƒ”ãƒœãƒƒãƒˆã‚’ç”»åƒã®ä¸­å¿ƒã«ã™ã‚‹
+	* - trueãªã‚‰ãƒ”ãƒœãƒƒãƒˆãŒä¸­å¤®
+	* - falseãªã‚‰ãƒ”ãƒœãƒƒãƒˆãŒå·¦ä¸Š
 	*/
-	void draw(const Math::Vec& draw, const int index, const bool isCenter);
+	void draw(const Math::Vec& pos, const int index, const bool isCenter);
 
 	/**
-	* @brief ˆê–‡ŠG‚Ìw’è‚µ‚½”ÍˆÍ‚ğØ‚èo‚µ‚Ä•`‰æ
-	* @param pos •`‰æ‚·‚éÀ•W
-	* @param src Œ³‰æ‘œ‚Ì•`‰æ‚·‚é”ÍˆÍ
-	* @param turnFlag ”½“]‚·‚é‚©‚Ç‚¤‚©
+	* @brief ä¸€æšçµµã®æŒ‡å®šã—ãŸç¯„å›²ã‚’åˆ‡ã‚Šå‡ºã—ã¦æç”»
+	* @param pos æç”»ã™ã‚‹åº§æ¨™
+	* @param src å…ƒç”»åƒã®æç”»ã™ã‚‹ç¯„å›²
+	* @param turnFlag åè»¢ã™ã‚‹ã‹ã©ã†ã‹
 	*/
 	void drawRect(const Math::Vec& pos, const Math::Box2D& src, const bool turnFlag);
 
-	//! ƒnƒ“ƒhƒ‹‚ğæ“¾‚·‚é(—v‚ç‚È‚¢‚©‚à)
+	/**
+	* @brief å˜ä¸€ã§èª­ã¿è¾¼ã‚“ã ç”»åƒã®æç”»ã€å›è»¢æ‹¡ç¸®ã‚ã‚Š
+	* @param pos æç”»ã™ã‚‹åº§æ¨™
+	* @param scale æ‹¡å¤§ç‡
+	* @param angle å›è»¢è§’åº¦(ãƒ©ã‚¸ã‚¢ãƒ³)
+	* @param isTurn ç”»åƒã‚’åè»¢ã™ã‚‹ã‹ã©ã†ã‹
+	*/
+	void drawExtRota(const Math::Vec& pos, const Math::Vec& scale, const float angle, const bool isTurn);
+
+	/**
+	* @brief åˆ†å‰²ã—ã¦èª­ã¿è¾¼ã‚“ã ç”»åƒã®æç”»ã€å›è»¢æ‹¡ç¸®ã‚ã‚Š
+	* @param pos æç”»ã™ã‚‹åº§æ¨™
+	* @param scale æ‹¡å¤§ç‡
+	* @param angle å›è»¢è§’åº¦(ãƒ©ã‚¸ã‚¢ãƒ³)
+	* @param index æç”»ã™ã‚‹ç”»åƒã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
+	* @param isTurn ç”»åƒã‚’åè»¢ã™ã‚‹ã‹ã©ã†ã‹
+	*/
+	void drawExtRota(const Math::Vec& pos, const Math::Vec& scale, const float angle, const int index, const bool isTurn);
+
+	/**
+	* @brief èª­ã¿è¾¼ã¿æ¸ˆã¿ã®ç”»åƒã®ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹
+	* @return ç”»åƒã®ã‚µã‚¤ã‚º
+	*/
+	Math::Vec getGraphSize();
+
+	//! ãƒãƒ³ãƒ‰ãƒ«ã‚’å–å¾—ã™ã‚‹(è¦ã‚‰ãªã„ã‹ã‚‚)
 	int getHandle();
 };
