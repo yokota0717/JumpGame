@@ -10,6 +10,7 @@
 
 #pragma once
 #include <string>
+#include <any>
 #include "../Math/Math.h"
 
 /**
@@ -74,13 +75,13 @@ public:
 	* @param receiver メッセージを受け取るタスクのポインタ
 	* @msg メッセージ
 	*/
-	void postMsg(TaskObject* sender, TaskObject* receiver, std::string& msg);
+	void postMsg(TaskObject* sender, TaskObject* receiver, const std::any msg);
 	/**
 	* @brief タスクからのメッセージ受け取り関数
 	* @param sender メッセージを送るタスクのポインタ
 	* @param msg メッセージ
 	*/
-	virtual void receiveMsg(TaskObject* sender, std::string& msg);
+	virtual void receiveMsg(TaskObject* sender, const std::any msg);
 
 	/**
 	* @brief 座標を設定する

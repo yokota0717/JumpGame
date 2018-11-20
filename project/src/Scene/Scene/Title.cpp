@@ -1,14 +1,14 @@
 #include "../GameManager.h"
 #include "Title.h"
 #include "DxLib.h"
-#include "../../Actor/Player.h"
+#include "../../Actor/Back.hpp"
 
 namespace Scene {
 	Title::Title(IOnSceneChangedListener* listener, [[maybe_unused]]const Parameter& param)
 		:
 		AbstractScene(listener)
 	{
-	//	TaskSystem::getTaskSystem().addTask(new Player());
+		Back::create("sky.bmp");
 	}
 
 	Title::~Title() {}

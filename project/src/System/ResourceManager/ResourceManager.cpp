@@ -16,7 +16,7 @@
 
 void ResourceManager::GraphFactory::initLoad() {
 	//★★★アプリケーション開始時に読み込みたい画像はここでロードする★★★
-	//int handle = LoadGraph("./data/image/player.png");
+	ResourceManager::getGraphFac().getGraph("sky.bmp");
 }
 void ResourceManager::SoundFactory::initLoad() {
 	//★★★アプリケーション開始時に読み込みたいサウンドはここでロードする★★★
@@ -30,13 +30,11 @@ ResourceManager::GraphFactory::GraphFactory()
 {}
 
 ResourceManager::GraphFactory::~GraphFactory() {
-	for (auto it = divPool_.begin(); it != divPool_.end(); ++it) {
-		if (it->second) {
-			delete it->second;
+	for (auto it : divPool_) {
+		if (it.second.first) {
+			delete it.second.first;
 		}
-		it->second = nullptr;
 	}
-	divPool_.clear();
 	InitGraph();
 }
 
@@ -53,7 +51,7 @@ int* ResourceManager::GraphFactory::createGraphDiv(const std::string& fileName, 
 
 int ResourceManager::GraphFactory::getGraph(const std::string& fileName) {
 	std::string file = path + fileName;
-	auto it = singlePool_.find(file);
+	auto it = singlePool_.find(fileName);
 	if (it != singlePool_.end()) {
 		return it->second;
 	}
@@ -66,13 +64,13 @@ int ResourceManager::GraphFactory::getGraph(const std::string& fileName) {
 
 int* ResourceManager::GraphFactory::getGraphDiv(const std::string& fileName, const int allNum, const int xNum, const int yNum, const int xSize, const int ySize) {
 	std::string file = path + fileName;
-	auto it = divPool_.find(file);
+	auto it = divPool_.find(fileName);
 	if (it != divPool_.end()) {
-		return it->second;
+		return it->second.first;
 	}
 	int* newGraph = createGraphDiv(file.c_str(), allNum, xNum, yNum, xSize, ySize);
 	if (*newGraph != -1) {
-		divPool_.insert(std::make_pair(fileName, newGraph));
+		divPool_.insert(std::make_pair(fileName, std::make_pair(newGraph, (size_t)allNum)));
 	}
 	return newGraph;
 }
@@ -82,7 +80,7 @@ int* ResourceManager::GraphFactory::getGraphDiv(const std::string& fileName, con
 ResourceManager::SoundFactory::SoundFactory()
 	:
 	path("./data/sound/")
-{}	
+{}
 
 ResourceManager::SoundFactory::~SoundFactory()
 {
@@ -104,7 +102,7 @@ int ResourceManager::SoundFactory::loadSoundAsync(std::string& fileName) {
 int ResourceManager::SoundFactory::getSound(const std::string& fileName) {
 	std::string file = path + fileName;
 	auto it = pool_.find(file);
-	if(it != pool_.end()){
+	if (it != pool_.end()) {
 		return it->second;
 	}
 	int newSound = loadSound(file);

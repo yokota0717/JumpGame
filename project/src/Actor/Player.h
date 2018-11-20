@@ -51,6 +51,8 @@ private:
 	Player();
 	//! ジャンプ処理
 	void jump(Angle angle);
+	//! スコア加算
+	void calcScore();
 public:
 	//! 生成窓口
 	static Player* create();

@@ -4,6 +4,9 @@
 #include "../../Actor/Player.h"
 #include "../../Actor/Block/BlockManager.h"
 #include "../../Actor/Back.hpp"
+#include "../../Actor/UI/Score.h"
+#include "../../Actor/UI/ScoreUI.h"
+
 
 
 namespace Scene {
@@ -14,13 +17,15 @@ namespace Scene {
 		BlockManager::create();
 		auto player = Player::create();
 		game->camera_.setTarget(player);
-		Back::create("sky.bmp");
+		Score::create();
+		ScoreUI::create();
 	}
-
 
 	Stage1::~Stage1() {
 		TaskSystem::getTaskSystem().killTaskGroup("player");
 		TaskSystem::getTaskSystem().killTaskGroup("block");
+		TaskSystem::getTaskSystem().killTaskGroup("score");
+		TaskSystem::getTaskSystem().killTaskGroup("UI");
 		game->camera_.setPos(Math::Vec{ 0,0 });
 	}
 
