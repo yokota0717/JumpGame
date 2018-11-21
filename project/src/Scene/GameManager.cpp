@@ -23,9 +23,9 @@ void GameManager::mainLoop() {
 	mouse.update();
 	pad.update();
 	sceneManager_->updateTopScene();
-	TaskSystem::getTaskSystem().updateTasks();
+	TaskSystem::getInstance().updateTasks();
 	sceneManager_->renderTopScene();
-	TaskSystem::getTaskSystem().renderTasks();
+	TaskSystem::getInstance().renderTasks();
 	if (kb.Down(Q)) { debug_ = !debug_; }
 	frame_.add();
 	fps_.wait();

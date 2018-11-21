@@ -125,13 +125,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\Actor\Back.cpp" />
-    <ClCompile Include="src\Actor\Block\Block.cpp" />
-    <ClCompile Include="src\Actor\Block\BlockManager.cpp" />
-    <ClCompile Include="src\Actor\Move\Move.cpp" />
-    <ClCompile Include="src\Actor\Player.cpp" />
-    <ClCompile Include="src\Actor\UI\Score.cpp" />
-    <ClCompile Include="src\Actor\UI\ScoreUI.cpp" />
     <ClCompile Include="src\define.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Scene\GameManager.cpp" />
@@ -145,24 +138,19 @@
     <ClCompile Include="src\System\ResourceManager\ResourceManager.cpp" />
     <ClCompile Include="src\System\TaskSystem\TaskObject.cpp" />
     <ClCompile Include="src\System\TaskSystem\TaskSystem.cpp" />
-    <ClCompile Include="src\Utility\Wipe\Wipe.cpp" />
+    <ClCompile Include="src\Tasks\Block\Block.cpp" />
+    <ClCompile Include="src\Tasks\Block\BlockManager.cpp" />
+    <ClCompile Include="src\Tasks\Player.cpp" />
+    <ClCompile Include="src\Tasks\UI\Score.cpp" />
+    <ClCompile Include="src\Tasks\UI\ScoreUI.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Actor\Back.hpp" />
-    <ClInclude Include="src\Actor\Block\Block.h" />
-    <ClInclude Include="src\Actor\Block\BlockManager.h" />
-    <ClInclude Include="src\Actor\MoveObjectBase.hpp" />
-    <ClInclude Include="src\Actor\Move\Move.h" />
-    <ClInclude Include="src\Actor\Player.h" />
-    <ClInclude Include="src\Actor\UI\Score.h" />
-    <ClInclude Include="src\Actor\UI\ScoreUI.h" />
     <ClInclude Include="src\define.h" />
     <ClInclude Include="src\Scene\GameManager.h" />
     <ClInclude Include="src\Scene\SceneInfo.hpp" />
     <ClInclude Include="src\Scene\SceneManager.hpp" />
     <ClInclude Include="src\Scene\Scene\Stage1.h" />
     <ClInclude Include="src\Scene\Scene\Title.h" />
-    <ClInclude Include="src\System\Animator\Animator.hpp" />
     <ClInclude Include="src\System\Camera\Camera.h" />
     <ClInclude Include="src\System\Collision\Collision.h" />
     <ClInclude Include="src\System\FPS\FPS.hpp" />
@@ -172,12 +160,17 @@
     <ClInclude Include="src\System\ResourceManager\ResourceManager.h" />
     <ClInclude Include="src\System\TaskSystem\TaskObject.h" />
     <ClInclude Include="src\System\TaskSystem\TaskSystem.h" />
+    <ClInclude Include="src\Tasks\Back.hpp" />
+    <ClInclude Include="src\Tasks\Block\Block.h" />
+    <ClInclude Include="src\Tasks\Block\BlockManager.h" />
+    <ClInclude Include="src\Tasks\Player.h" />
+    <ClInclude Include="src\Tasks\UI\Score.h" />
+    <ClInclude Include="src\Tasks\UI\ScoreUI.h" />
     <ClInclude Include="src\Utility\Counter.hpp" />
     <ClInclude Include="src\Utility\easing.hpp" />
     <ClInclude Include="src\Utility\Error.hpp" />
     <ClInclude Include="src\Utility\Random.hpp" />
     <ClInclude Include="src\Utility\Utility.hpp" />
-    <ClInclude Include="src\Utility\Wipe\Wipe.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

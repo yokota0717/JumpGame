@@ -30,7 +30,7 @@ TaskSystem::~TaskSystem() {
 	releaseMemory();
 }
 
-TaskSystem& TaskSystem::getTaskSystem() {
+TaskSystem& TaskSystem::getInstance() {
 	if (!instance_) {
 		instance_ = std::unique_ptr<TaskSystem>(new TaskSystem());
 	}

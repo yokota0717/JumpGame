@@ -38,7 +38,7 @@ public:
 	/**
 	* @brief タスク管理システムのインスタンスを得る
 	*/
-	static TaskSystem& getTaskSystem();
+	static TaskSystem& getInstance();
 
 	/**
 	* @brief タスクを追加する

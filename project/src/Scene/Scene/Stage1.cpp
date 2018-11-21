@@ -1,11 +1,11 @@
 #include "Stage1.h"
 #include "DxLib.h"
 #include "../GameManager.h"
-#include "../../Actor/Player.h"
-#include "../../Actor/Block/BlockManager.h"
-#include "../../Actor/Back.hpp"
-#include "../../Actor/UI/Score.h"
-#include "../../Actor/UI/ScoreUI.h"
+#include "../../Tasks/Player.h"
+#include "../../Tasks/Block/BlockManager.h"
+#include "../../Tasks/Back.hpp"
+#include "../../Tasks/UI/Score.h"
+#include "../../Tasks/UI/ScoreUI.h"
 
 
 
@@ -22,10 +22,10 @@ namespace Scene {
 	}
 
 	Stage1::~Stage1() {
-		TaskSystem::getTaskSystem().killTaskGroup("player");
-		TaskSystem::getTaskSystem().killTaskGroup("block");
-		TaskSystem::getTaskSystem().killTaskGroup("score");
-		TaskSystem::getTaskSystem().killTaskGroup("UI");
+		TaskSystem::getInstance().killTaskGroup("player");
+		TaskSystem::getInstance().killTaskGroup("block");
+		TaskSystem::getInstance().killTaskGroup("score");
+		TaskSystem::getInstance().killTaskGroup("UI");
 		game->camera_.setPos(Math::Vec{ 0,0 });
 	}
 
