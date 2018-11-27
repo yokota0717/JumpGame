@@ -163,6 +163,7 @@
     <ClInclude Include="src\Tasks\Back.hpp" />
     <ClInclude Include="src\Tasks\Block\Block.h" />
     <ClInclude Include="src\Tasks\Block\BlockManager.h" />
+    <ClInclude Include="src\Tasks\FileLoad\HighScoreLoader.hpp" />
     <ClInclude Include="src\Tasks\Player.h" />
     <ClInclude Include="src\Tasks\UI\Score.h" />
     <ClInclude Include="src\Tasks\UI\ScoreUI.h" />

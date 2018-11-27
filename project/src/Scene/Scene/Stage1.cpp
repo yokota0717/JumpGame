@@ -6,7 +6,7 @@
 #include "../../Tasks/Back.hpp"
 #include "../../Tasks/UI/Score.h"
 #include "../../Tasks/UI/ScoreUI.h"
-
+#include "../../Tasks/FileLoad/HighScoreLoader.hpp"
 
 
 namespace Scene {
@@ -19,6 +19,9 @@ namespace Scene {
 		game->camera_.setTarget(player);
 		Score::create();
 		ScoreUI::create();
+		auto hi = HighScoreLoader::create();
+		hi->loadHighScore();
+		hi->outputHighScore();
 	}
 
 	Stage1::~Stage1() {
